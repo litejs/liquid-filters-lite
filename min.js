@@ -1,0 +1,1 @@
+!function(a){var b=Array[a];a=String[a];a.capitalize=function(){return this.charAt(0).toUpperCase()+this.slice(1)};a.downcase=a.toLowerCase;a.upcase=a.toUpperCase;a.size=b.size=function(){return this.length};b.first=function(){return this[0]};b.last=function(){return this[this.length-1]};b.sort=function(){sort(this);return this}}("prototype");
