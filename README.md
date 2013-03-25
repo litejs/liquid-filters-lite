@@ -10,7 +10,7 @@ Liquid Filters
 
 Standard Filters for [liquid-lite][] extending native prototypes.
 Download [compressed][1] 
-(346 bytes or 210 bytes gzipped)
+(503 bytes or 271 bytes gzipped)
 or [uncompressed][2] source.
 
 
@@ -33,16 +33,19 @@ or [uncompressed][2] source.
     _Native in javascript_
 
 - **sort** - sort elements of the array
+    _Native in javascript_
 - **size** - return the size of an array or string
 - **replace** - replace each occurrence e.g. {{ 'foofoo' | replace:'foo','bar' }} #=> 'barbar'.
     _Native in javascript_
 - **split** - split a string on a matching pattern e.g. {{ "a~b" | split:~ }} #=> ['a','b'].
     _Native in javascript_
+- **pluck** - map/collect an array on a given property
+- **truncate** - truncate a string down to x characters
+- **truncatewords** - truncate a string down to x words
 
 
 ### Todo
 
-- **map** - map/collect an array on a given property
 - **escape** - escape a string
 - **escape_once** - returns an escaped version of html without affecting existing escaped entities
 - **strip_html** - strip html from string
@@ -51,8 +54,6 @@ or [uncompressed][2] source.
 - **replace_first** - replace the first occurrence e.g. {{ 'barbar' | replace_first:'bar','foo' }} #=> 'foobar'
 - **remove** - remove each occurrence e.g. {{ 'foobarfoobar' | remove:'foo' }} #=> 'barbar'
 - **remove_first** - remove the first occurrence e.g. {{ 'barbar' | remove_first:'bar' }} #=> 'bar'
-- **truncate** - truncate a string down to x characters
-- **truncatewords** - truncate a string down to x words
 - **prepend** - prepend a string e.g. {{ 'bar' | prepend:'foo' }} #=> 'foobar'
 - **append** - append a string e.g. {{ 'foo' | append:'bar' }} #=> 'foobar'
 - **minus** - subtraction e.g. {{ 4 | minus:2 }} #=> 2
