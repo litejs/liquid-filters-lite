@@ -2,7 +2,7 @@
 
 
 /*
-* @version  0.0.2
+* @version  0.0.3
 * @author   Lauri Rooden - https://github.com/litejs/liquid-filters-lite
 * @license  MIT License  - http://lauri.rooden.ee/mit-license.txt
 */
@@ -29,6 +29,14 @@
 	S.truncatewords = function(num) {
 		return this.split(" ").splice(0, num).join(" ")
 	}
+	S.remove = function(str) {
+		return this.split(str).join("")
+	}
+	S.remove_first = function(str) {
+		var arr = this.split(str)
+		return arr.shift() + arr.join(str)
+	}
+
 
 	A.first = function() {
 		return this[0]

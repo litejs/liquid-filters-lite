@@ -17,6 +17,10 @@ var found = 0
 	, [{"a":1}, {"a":3}, {"b":1, "a":2}].pluck("a").join() , "1,3,2"
 	, "AbCdef".truncate(3) , "AbC"
 	, "Ab Cd ef".truncatewords(2) , "Ab Cd"
+	, "AbxxCdxxef".replace("xx", "yy") , "AbyyCdxxef"
+	, "AbxxCdxxef".replace(/xx/g, "yy") , "AbyyCdyyef"
+	, "AbxxCdxxef".remove("xx") , "AbCdef"
+	, "AbxxCdxxef".remove_first("xx") , "AbCdxxef"
 
 	]
 

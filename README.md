@@ -10,7 +10,7 @@ Liquid Filters
 
 Standard Filters for [liquid-lite][] extending native prototypes.
 Download [compressed][1] 
-(503 bytes or 271 bytes gzipped)
+(631 bytes or 309 bytes gzipped)
 or [uncompressed][2] source.
 
 
@@ -24,24 +24,29 @@ or [uncompressed][2] source.
     {{ datetime | date:"hh:mm" }}
     ```
 
-- **capitalize** - capitalize words in the input sentence
-- **downcase** - convert an input string to lowercase
-- **upcase** - convert an input string to uppercase
-- **first** - get the first element of the passed in array
-- **last** - get the last element of the passed in array
-- **join** - join elements of the array with certain character between them.
-    _Native in javascript_
-
-- **sort** - sort elements of the array
-    _Native in javascript_
-- **size** - return the size of an array or string
-- **replace** - replace each occurrence e.g. {{ 'foofoo' | replace:'foo','bar' }} #=> 'barbar'.
-    _Native in javascript_
-- **split** - split a string on a matching pattern e.g. {{ "a~b" | split:~ }} #=> ['a','b'].
-    _Native in javascript_
-- **pluck** - map/collect an array on a given property
-- **truncate** - truncate a string down to x characters
-- **truncatewords** - truncate a string down to x words
+-   **capitalize** - capitalize words in the input sentence
+-   **downcase** - convert an input string to lowercase
+-   **upcase** - convert an input string to uppercase
+-   **first** - get the first element of the passed in array
+-   **last** - get the last element of the passed in array
+-   **join** - join elements of the array with certain character between them.
+    `Native in javascript`
+-   **sort** - sort elements of the array
+    `Native in javascript`
+-   **size** - return the size of an array or string
+-   **replace** - replace the first or each occurrence. 
+    `Native in javascript`
+    ```javascript
+    {{ 'foofoo' | replace:'foo','bar' }} #=> 'barfoo'
+    {{ 'foofoo' | replace:/foo/g,'bar' }} #=> 'barbar'
+    ```
+-   **remove** - remove each occurrence e.g. {{ 'foobarfoobar' | remove:'foo' }} #=> 'barbar'
+-   **remove_first** - remove the first occurrence e.g. {{ 'barbar' | remove_first:'bar' }} #=> 'bar'
+-   **split** - split a string on a matching pattern e.g. {{ "a~b" | split:~ }} #=> ['a','b'].
+    `Native in javascript`
+-   **pluck** - map/collect an array on a given property
+-   **truncate** - truncate a string down to x characters
+-   **truncatewords** - truncate a string down to x words
 
 
 ### Todo
@@ -49,11 +54,6 @@ or [uncompressed][2] source.
 - **escape** - escape a string
 - **escape_once** - returns an escaped version of html without affecting existing escaped entities
 - **strip_html** - strip html from string
-- **strip_newlines** - strip all newlines (\n) from string
-- **newline_to_br** - replace each newline (\n) with html break
-- **replace_first** - replace the first occurrence e.g. {{ 'barbar' | replace_first:'bar','foo' }} #=> 'foobar'
-- **remove** - remove each occurrence e.g. {{ 'foobarfoobar' | remove:'foo' }} #=> 'barbar'
-- **remove_first** - remove the first occurrence e.g. {{ 'barbar' | remove_first:'bar' }} #=> 'bar'
 - **prepend** - prepend a string e.g. {{ 'bar' | prepend:'foo' }} #=> 'foobar'
 - **append** - append a string e.g. {{ 'foo' | append:'bar' }} #=> 'foobar'
 - **minus** - subtraction e.g. {{ 4 | minus:2 }} #=> 2
