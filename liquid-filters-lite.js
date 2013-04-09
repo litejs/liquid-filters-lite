@@ -2,7 +2,7 @@
 
 
 /*
-* @version  0.0.3
+* @version  0.0.4
 * @author   Lauri Rooden - https://github.com/litejs/liquid-filters-lite
 * @license  MIT License  - http://lauri.rooden.ee/mit-license.txt
 */
@@ -35,6 +35,13 @@
 	S.remove_first = function(str) {
 		var arr = this.split(str)
 		return arr.shift() + arr.join(str)
+	}
+
+	S.camelback = function() {
+		return this.replace(/[ _-]+([a-z])/g, function(_, a){return a.toUpperCase()})
+	}
+	S.camelcase = function() {
+		return this.camelback().capitalize()
 	}
 
 

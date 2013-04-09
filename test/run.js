@@ -21,6 +21,8 @@ var found = 0
 	, "AbxxCdxxef".replace(/xx/g, "yy") , "AbyyCdyyef"
 	, "AbxxCdxxef".remove("xx") , "AbCdef"
 	, "AbxxCdxxef".remove_first("xx") , "AbCdxxef"
+	, "aa bb cc".camelback() , "aaBbCc"
+	, "aa bb cc".camelcase() , "AaBbCc"
 
 	]
 

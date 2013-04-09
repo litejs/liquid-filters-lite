@@ -10,7 +10,7 @@ Liquid Filters
 
 Standard Filters for [liquid-lite][] extending native prototypes.
 Download [compressed][1] 
-(631 bytes or 309 bytes gzipped)
+(792 bytes or 359 bytes gzipped)
 or [uncompressed][2] source.
 
 
@@ -47,6 +47,8 @@ or [uncompressed][2] source.
 -   **pluck** - map/collect an array on a given property
 -   **truncate** - truncate a string down to x characters
 -   **truncatewords** - truncate a string down to x words
+-   **camelcase** - capitalized CamelCase
+-   **camelback** - camelBack notation
 
 
 ### Todo
