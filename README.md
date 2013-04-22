@@ -10,7 +10,7 @@ Liquid Filters
 
 Standard Filters for [liquid-lite][] extending native prototypes.
 Download [compressed][1] 
-(792 bytes or 359 bytes gzipped)
+(1572 bytes, 746 bytes gzipped)
 or [uncompressed][2] source.
 
 

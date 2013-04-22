@@ -24,6 +24,11 @@ var found = 0
 	, "aa bb cc".camelback() , "aaBbCc"
 	, "aa bb cc".camelcase() , "AaBbCc"
 
+	, "13".humanTime(), "13 seconds"
+	, "78".humanTime(), "1 minute"
+
+	, "71".toAccuracy(5), "70"
+	, "12.31".toAccuracy(0.2), "12.4"
 	]
 
 for (var i = 0, len = out.length; i < len; ) {

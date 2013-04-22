@@ -1,6 +1,6 @@
 {
   "name": "liquid-filters-lite",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "description": "Standard Filters for Liquid template engine",
   "main": "liquid-filters-lite.js",
