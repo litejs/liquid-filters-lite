@@ -13,6 +13,7 @@ Download [compressed][1]
 (1572 bytes, 746 bytes gzipped)
 or [uncompressed][2] source.
 
+[![Build Status](https://travis-ci.org/litejs/liquid-filters-lite.png?branch=master)](https://travis-ci.org/litejs/liquid-filters-lite)
 
 ### Currently supported filters
 
@@ -49,6 +50,9 @@ or [uncompressed][2] source.
 -   **truncatewords** - truncate a string down to x words
 -   **camelcase** - capitalized CamelCase
 -   **camelback** - camelBack notation
+-   **humanTime** - {{ "13" | humanTime }} #=> "13 seconds", {{ "78" | humanTime }} #=> "1 minute"
+-   **toAccuracy** - {{ "71" | toAccuracy:5 }} #=> "70", {{ "12.31" | toAccuracy:0.2 }} #=> "12.4"
+
 
 
 ### Todo
