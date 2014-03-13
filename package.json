@@ -1,17 +1,10 @@
 {
   "name": "liquid-filters-lite",
-  "version": "0.0.5",
+  "version": "0.0.6",
+  "stability": 2,
   "license": "MIT",
-  "description": "Standard Filters for Liquid template engine",
-  "main": "liquid-filters-lite.js",
   "author": "Lauri Rooden <lauri@rooden.ee>",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/litejs/liquid-filters-lite.git"
-  },
-  "bugs": {
-    "url": "https://github.com/litejs/liquid-filters-lite/issues"
-  },
+  "description": "Standard Filters for Liquid template engine",
   "keywords": [
     "template",
     "engine",
@@ -19,5 +12,51 @@
     "filters",
     "litejs"
   ],
-  "readmeFilename": "README.md"
+  "main": "liquid-filters-lite.js",
+  "readmeFilename": "README.md",
+  "scripts": {
+    "build": "node node_modules/buildman/index.js --all",
+    "travis-test": "istanbul cover ./tests/run.js && (coveralls < coverage/lcov.info || exit 0)",
+    "test": "node tests/run.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/litejs/liquid-filters-lite.git"
+  },
+  "bugs": {
+    "url": "https://github.com/litejs/liquid-filters-lite/issues"
+  },
+  "devDependencies": {
+    "buildman": "*",
+    "browser-upgrade-lite": "*",
+    "testman": "*"
+  },
+  "buildman": {
+    "min.js": "liquid-filters-lite.js"
+  },
+  "testling": {
+    "files": "tests/run.js",
+    "browsers": [
+      "ie/6..10",
+      "ff/3",
+      "ff/4",
+      "ff/5",
+      "ff/20",
+      "ff/25",
+      "chrome/4",
+      "chrome/10",
+      "chrome/20",
+      "chrome/30",
+      "chrome/31",
+      "opera/10",
+      "opera/11",
+      "opera/11.6",
+      "opera/12",
+      "opera/16",
+      "safari/4..6",
+      "android-browser/4.2",
+      "iphone/6",
+      "ipad/6"
+    ]
+  }
 }

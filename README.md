@@ -1,21 +1,31 @@
+[1]: https://secure.travis-ci.org/litejs/liquid-filters-lite.png
+[2]: https://travis-ci.org/litejs/liquid-filters-lite
+[3]: https://coveralls.io/repos/litejs/liquid-filters-lite/badge.png
+[4]: https://coveralls.io/r/litejs/liquid-filters-lite
+[7]: https://ci.testling.com/litejs/liquid-filters-lite.png
+[8]: https://ci.testling.com/litejs/liquid-filters-lite
 
-[1]: https://raw.github.com/litejs/liquid-filters-lite/master/min.js
-[2]: https://raw.github.com/litejs/liquid-filters-lite/master/liquid-filters-lite.js
 [date-format-lite]: http://www.litejs.com/date-format-lite/
 [liquid-lite]: http://www.litejs.com/liquid-lite/
+[npm-package]: https://npmjs.org/package/liquid-filters-lite
 
 
-Liquid Filters
+
+    @version    0.0.6
+    @date       2014-03-13
+    @stability  2 - Unstable
+
+
+
+
+Liquid Filters &ndash; [![Build][1]][2] [![Coverage][3]][4]
 ==============
 
 Standard Filters for [liquid-lite][] extending native prototypes.
-Download [compressed][1] 
-(1572 bytes, 746 bytes gzipped)
-or [uncompressed][2] source.
 
-[![Build Status](https://travis-ci.org/litejs/liquid-filters-lite.png?branch=master)](https://travis-ci.org/litejs/liquid-filters-lite)
 
-### Currently supported filters
+Currently supported filters
+---------------------------
 
 - **date** - reformat a date syntax reference  
     Require [date-format-lite][]
@@ -49,7 +59,7 @@ or [uncompressed][2] source.
 -   **truncate** - truncate a string down to x characters
 -   **truncatewords** - truncate a string down to x words
 -   **camelcase** - capitalized CamelCase
--   **camelback** - camelBack notation
+-   **camelback** - camelBa:ck notation
 -   **humanTime** - {{ "13" | humanTime }} #=> "13 seconds", {{ "78" | humanTime }} #=> "1 minute"
 -   **toAccuracy** - {{ "71" | toAccuracy:5 }} #=> "70", {{ "12.31" | toAccuracy:0.2 }} #=> "12.4"
 
@@ -67,6 +77,18 @@ or [uncompressed][2] source.
 - **times** - multiplication e.g {{ 5 | times:4 }} #=> 20
 - **divided_by** - division e.g. {{ 10 | divided_by:2 }} #=> 5
 - **modulo** - remainder, e.g. {{ 3 | modulo:2 }} #=> 1
+
+
+Browser Support
+---------------
+
+[![browser support][7]][8]
+
+
+External links
+--------------
+
+-   [npm-package][]
 
 
 ### Licence

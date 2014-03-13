@@ -2,17 +2,21 @@
 
 
 /*
-* @version  0.0.5
-* @author   Lauri Rooden - https://github.com/litejs/liquid-filters-lite
-* @license  MIT License  - http://lauri.rooden.ee/mit-license.txt
+* @version    0.0.6
+* @date       2014-03-13
+* @stability  2 - Unstable
+* @author     Lauri Rooden <lauri@rooden.ee>
+* @license    MIT License
 */
 
 
 
 !function(P) {
 	var A = Array[P]
+	, D = Date[P]
 	, N = Number[P]
 	, S = String[P]
+	, timesArr = []
 
 
 	S.format = function(m) {
@@ -58,6 +62,9 @@
 	S.camelcase = function() {
 		return this.camelback().capitalize()
 	}
+	S.times = function(count) {
+		return count < 1 ? "" : timesArr.length = count + 1, timesArr.join(this)
+	}
 
 
 	A.first = function() {
@@ -92,10 +99,28 @@
 	S.humanSize = N.humanSize = function() {
 		return words(this, [1024,1024,1024], ["byte","KB","MB","GB"])
 	}
-	S.humanTime = N.humanTime = function() {
-		return words(this, [60,60,24,7,30], ["second","minute","hour","day","week","month"])
+	S.humanTime = N.humanTime = function(texts) {
+		return words(this, [60,60,24,7,30], ["second","minute","hour","day","week","month"], texts)
 	}
 
+	//** Date.daysInMonth
+	D.daysInMonth = function() {
+		return (new Date(this.getFullYear(),this.getMonth()+1,0)).getDate()
+	}
+	//*/
+
+	//** Date.startOfWeek
+	D.startOfWeek = function() {
+		var t = this
+		return new Date(t.getFullYear(), t.getMonth(), t.getDate() - (t.getDay() || 7) +1)
+	}
+	//*/
+	//** Date.timeAgo convert dates to human-readable
+	D.timeAgo = function(format, custom) {
+		var t = this, d = (new Date() - t + 1) / 1000
+		return d.humanTime({"default":"{0} {1}{2} ago", "day":"Yesterday"}, function(){return t.format(format)})
+	}
+	//*/
 }("prototype")
 
 
