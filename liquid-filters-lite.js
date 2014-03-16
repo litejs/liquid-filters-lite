@@ -16,12 +16,19 @@
 	, D = Date[P]
 	, N = Number[P]
 	, S = String[P]
+	, formatRe = /\{(?!\\)\s*([$\w]+)((?:(["'\/])(?:\\.|.)*?\3|\-?\d*\.?\d+|[,\s\w|:])*)\}/g
+	, filterRe = /\s*\|\s*(\w+)(?:\s*\:((?:(["'\/])(?:\\.|.)*?\3|\-?\d*\.?\d+|[,\s])*))?/g
 	, timesArr = []
 
-
-	S.format = function(m) {
-		var a = typeof m == "object" ? m : arguments
-		return this.replace(/\{(\w+)\}/g, function(_, i){return a[i]})
+	S.format = function(data) {
+		var args = typeof data == "object" ? data : arguments
+		return this.replace(formatRe, function(_, arg, filter) {
+			if (filter) {
+				var fn = "(_['"+arg+"']||''" + filter.replace(filterRe, ").$1($2") + ")"
+				return Fn(fn)(args).format(data)
+			}
+			return arg in args ? args[arg] : ""
+		}).replace(/{\\/g,"{")
 	}
 
 	S.safe = function() {
@@ -82,6 +89,26 @@
 	S.toAccuracy = N.toAccuracy = function(a) {
 		var x = (""+a).split("."), n = ~~((this/a)+.5) * a
 		return ""+(1 in x ? n.toFixed(x[1].length) : n)
+	}
+
+	S.pick = N.pick = function() {
+		var val = this + "="
+		for (var s, a = arguments, i = 0, len = a.length; i < len;) {
+			s = a[i++]
+			if (s.indexOf(val) == 0) {
+				s = s.slice(val.length)
+				i = len
+			}
+		}
+		return s.replace("#", this)
+	}
+	S.plural = N.plural = function() {
+		// Plural-Forms: nplurals=2; plural=n != 1;
+		// http://www.gnu.org/software/gettext/manual/html_mono/gettext.html#Plural-forms
+		return arguments[ +Fn("n->n != 1")( parseFloat(this) ) ].replace("#", this)
+	}
+	S.ordinal = N.ordinal = function() {
+		return this+'{0|substr:-1|pick:"1=st","2=nd","3=rd","th"}'.format(""+this)
 	}
 
 	function words(input, steps, units, strings, overflow) {

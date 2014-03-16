@@ -1,10 +1,35 @@
 
+global.Fn = require("functional-lite").Fn
+
 require("../")
 
 var curr = new Date()
+, user1 = { name: "John Doe", age: 17, sex: "male", num: 1, total: 2 }
+, user2 = { name: "Eve Joung", age: 31, sex: "female", num: 2, total: 1 }
+, user3 = { num: 2, total: 2 }
+, text1 = "{sex|pick:'male=He','female=She','They'} found {num|plural:'1 result','# results'} in {total|plural:'1 category','# categories'}."
+, text2 = "{sex | pick:'male=He', 'female=She', 'They'} found { num | plural : '1 result', '# results' } in { total | plural : '1 category' , '# categories' }."
 
 require("testman").
-describe("String filters").
+describe ("String filters").
+	it ("should format texts").
+		equal("{\\name}".format(user1),   "{name}").
+		equal("{name}".format(user1),     "John Doe").
+		equal("{ name}".format(user1),    "John Doe").
+		equal("{name  }".format(user1),   "John Doe").
+		equal("{ name }".format(user1),   "John Doe").
+
+		equal("A {name}".format(user1),   "A John Doe").
+		equal("A {name|upcase}".format(user1), "A JOHN DOE").
+
+		equal(text1.format(user1), "He found 1 result in 2 categories.").
+		equal(text1.format(user2), "She found 2 results in 1 category.").
+		equal(text1.format(user3), "They found 2 results in 2 categories.").
+
+		equal(text2.format(user1), "He found 1 result in 2 categories.").
+		equal(text2.format(user2), "She found 2 results in 1 category.").
+		equal(text2.format(user3), "They found 2 results in 2 categories.").
+
 	it ("should capitalize text").
 		equal( "ab cd".capitalize() , "Ab cd").
 		equal( "AbCd".downcase() , "abcd").
