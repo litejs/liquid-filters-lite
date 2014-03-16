@@ -2,8 +2,8 @@
 
 
 /*
-* @version    0.0.6
-* @date       2014-03-13
+* @version    0.0.7
+* @date       2014-03-16
 * @stability  2 - Unstable
 * @author     Lauri Rooden <lauri@rooden.ee>
 * @license    MIT License
@@ -18,7 +18,6 @@
 	, S = String[P]
 	, formatRe = /\{(?!\\)\s*([$\w]+)((?:(["'\/])(?:\\.|.)*?\3|\-?\d*\.?\d+|[,\s\w|:])*)\}/g
 	, filterRe = /\s*\|\s*(\w+)(?:\s*\:((?:(["'\/])(?:\\.|.)*?\3|\-?\d*\.?\d+|[,\s])*))?/g
-	, timesArr = []
 
 	S.format = function(data) {
 		var args = typeof data == "object" ? data : arguments
@@ -44,8 +43,8 @@
 		return this.charAt(0).toUpperCase() + this.slice(1)
 	}
 
-	S.downcase = S.toLowerCase
-	S.upcase = S.toUpperCase
+	S.lower = S.downcase = S.toLowerCase // lower
+	S.upper = S.upcase = S.toUpperCase   // upper
 	S.size = A.size = function() {
 		return this.length
 	}
@@ -69,9 +68,27 @@
 	S.camelcase = function() {
 		return this.camelback().capitalize()
 	}
-	S.times = function(count) {
-		return count < 1 ? "" : timesArr.length = count + 1, timesArr.join(this)
+	//*
+	S.repeat = S.times = function(times) {
+		return times < 1 ? "" : Array(++times).join(this)
 	}
+	/*/
+	// High porformance replace when we should need it
+	// http://stackoverflow.com/questions/202605/repeat-string-javascript
+
+	function stringFill3(x, n) {
+		var s = '';
+		for (;;) {
+			if (n & 1) s += x;
+			n >>= 1;
+			if (n) x += x;
+			else break;
+		}
+		return s;
+	}
+
+
+	//*/
 
 
 	A.first = function() {
@@ -86,7 +103,7 @@
 		return out
 	}
 
-	S.toAccuracy = N.toAccuracy = function(a) {
+	S.step = N.step = S.toAccuracy = N.toAccuracy = function(a) {
 		var x = (""+a).split("."), n = ~~((this/a)+.5) * a
 		return ""+(1 in x ? n.toFixed(x[1].length) : n)
 	}

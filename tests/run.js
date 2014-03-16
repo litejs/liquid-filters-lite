@@ -1,4 +1,5 @@
 
+require("browser-upgrade-lite")
 global.Fn = require("functional-lite").Fn
 
 require("../")
@@ -20,7 +21,7 @@ describe ("String filters").
 		equal("{ name }".format(user1),   "John Doe").
 
 		equal("A {name}".format(user1),   "A John Doe").
-		equal("A {name|upcase}".format(user1), "A JOHN DOE").
+		equal("A {name|upper}".format(user1), "A JOHN DOE").
 
 		equal(text1.format(user1), "He found 1 result in 2 categories.").
 		equal(text1.format(user2), "She found 2 results in 1 category.").
@@ -33,7 +34,7 @@ describe ("String filters").
 	it ("should capitalize text").
 		equal( "ab cd".capitalize() , "Ab cd").
 		equal( "AbCd".downcase() , "abcd").
-		equal( "AbCd".upcase() , "ABCD").
+		equal( "AbCd".upper() , "ABCD").
 		equal( "abc".size() , 3).
 		equal( "AbCdef".truncate(3) , "AbC").
 		equal( "Ab Cd ef".truncatewords(2) , "Ab Cd").
@@ -50,11 +51,17 @@ describe ("String filters").
 		equal( "71".toAccuracy(5), "70").
 		equal( "12.31".toAccuracy(0.2), "12.4").
 
-		equal( "a".times(1), "a").
-		equal( "a".times(2), "aa").
-		equal( "a".times(3), "aaa").
-		//equal( "B".times(0), "").
-		//equal( "1".times(-1), "").
+	it ("should repeat strings").
+		equal( "a".repeat(1),   "a").
+		equal( "Aa".repeat(1),  "Aa").
+		equal( "a".repeat(2),   "aa").
+		equal( "Aa".repeat(2),  "AaAa").
+		equal( "a".repeat(3),   "aaa").
+		equal( "B".repeat(0),   "").
+		equal( "Ba".repeat(0),  "").
+		equal( "1".repeat(-1),  "").
+		equal( "1a".repeat(-1), "").
+
 	it ("should have date stuff").
 		equal(function(){
 				curr.setTime( curr.getTime() - 1000 )
