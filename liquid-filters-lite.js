@@ -73,7 +73,7 @@
 		return times < 1 ? "" : Array(++times).join(this)
 	}
 	/*/
-	// High porformance replace when we should need it
+	// High porformance repeat when we should need it
 	// http://stackoverflow.com/questions/202605/repeat-string-javascript
 
 	function stringFill3(x, n) {
