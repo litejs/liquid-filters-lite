@@ -1,6 +1,6 @@
 {
   "name": "liquid-filters-lite",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "stability": 2,
   "license": "MIT",
   "author": "Lauri Rooden <lauri@rooden.ee>",
@@ -12,17 +12,14 @@
     "filters",
     "litejs"
   ],
-  "main": "liquid-filters-lite.js",
+  "main": "index.js",
   "readmeFilename": "README.md",
   "scripts": {
     "build": "node node_modules/buildman/index.js --all",
     "travis-test": "istanbul cover ./tests/run.js && (coveralls < coverage/lcov.info || exit 0)",
     "test": "node tests/run.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/litejs/liquid-filters-lite.git"
-  },
+  "repository": "git://github.com/litejs/liquid-filters-lite.git",
   "bugs": {
     "url": "https://github.com/litejs/liquid-filters-lite/issues"
   },
@@ -33,7 +30,7 @@
     "testman": "*"
   },
   "buildman": {
-    "min.js": "liquid-filters-lite.js"
+    "dist/index-min.js": "index.js"
   },
   "testling": {
     "files": "tests/run.js",

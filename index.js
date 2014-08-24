@@ -2,8 +2,8 @@
 
 
 /*
-* @version    0.0.7
-* @date       2014-03-16
+* @version    0.1.0
+* @date       2014-08-24
 * @stability  2 - Unstable
 * @author     Lauri Rooden <lauri@rooden.ee>
 * @license    MIT License
@@ -16,18 +16,21 @@
 	, D = Date[P]
 	, N = Number[P]
 	, S = String[P]
-	, formatRe = /\{(?!\\)\s*([$\w]+)((?:(["'\/])(?:\\.|.)*?\3|\-?\d*\.?\d+|[,\s\w|:])*)\}/g
-	, filterRe = /\s*\|\s*(\w+)(?:\s*\:((?:(["'\/])(?:\\.|.)*?\3|\-?\d*\.?\d+|[,\s])*))?/g
+	, formatRe = /\{(?!\\)(.+?)\}/g
+	, filterRe = /\|\s*(\w+)(?:\s*\:((?:(["'\/])(?:\\.|.)*?\3|\-?\d*\.?\d+|[,\s])*))?/g
+	, digitRe = /^\s*\d+/
+	, unescapeRe = /{\\/g
 
-	S.format = function(data) {
+	S.format = function(data, recursions) {
 		var args = typeof data == "object" ? data : arguments
-		return this.replace(formatRe, function(_, arg, filter) {
-			if (filter) {
-				var fn = "(_['"+arg+"']||''" + filter.replace(filterRe, ").$1($2") + ")"
-				return Fn(fn)(args).format(data)
-			}
-			return arg in args ? args[arg] : ""
-		}).replace(/{\\/g,"{")
+		return this.replace(formatRe, function(_, arg) {
+			_ = Fn(arg.replace(digitRe, "_[$&]").replace(filterRe, ".$1($2)"), "_")(args)
+			return args === data && recursions ? _.format(data, recursions - 1) : _
+		}).replace(unescapeRe, "{")
+	}
+
+	N.format = function(data, recursions) {
+		return ("" + this).format(data, recursions)
 	}
 
 	S.safe = function() {
