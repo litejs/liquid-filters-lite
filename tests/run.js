@@ -55,9 +55,7 @@ describe ("String filters").
 		equal( "AbxxCdxxef".replace("xx", "yy") , "AbyyCdxxef").
 		equal( "AbxxCdxxef".replace(/xx/g, "yy") , "AbyyCdyyef").
 		equal( "AbxxCdxxef".remove("xx") , "AbCdef").
-		equal( "AbxxCdxxef".remove_first("xx") , "AbCdxxef").
-		equal( "aa bb cc".camelback() , "aaBbCc").
-		equal( "aa bb cc".camelcase() , "AaBbCc").
+		equal( "aa bb cc".camelCase() , "aaBbCc").
 
 		equal( "13".humanTime(), "13 seconds").
 		equal( "78".humanTime(), "1 minute").

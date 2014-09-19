@@ -11,7 +11,7 @@
 
 
 
-    @version    0.1.1
+    @version    0.1.2
     @date       2014-09-19
     @stability  2 - Unstable
 
@@ -52,16 +52,14 @@ Currently supported filters
     {{ 'foofoo' | replace:/foo/g,'bar' }} #=> 'barbar'
     ```
 -   **remove** - remove each occurrence e.g. {{ 'foobarfoobar' | remove:'foo' }} #=> 'barbar'
--   **remove_first** - remove the first occurrence e.g. {{ 'barbar' | remove_first:'bar' }} #=> 'bar'
 -   **split** - split a string on a matching pattern e.g. {{ "a~b" | split:~ }} #=> ['a','b'].
     `Native in javascript`
 -   **pluck** - map/collect an array on a given property
 -   **truncate** - truncate a string down to x characters
 -   **truncatewords** - truncate a string down to x words
--   **camelcase** - capitalized CamelCase
--   **camelback** - camelBa:ck notation
+-   **camelCase** - camelCase notation
 -   **humanTime** - {{ "13" | humanTime }} #=> "13 seconds", {{ "78" | humanTime }} #=> "1 minute"
--   **toAccuracy** - {{ "71" | toAccuracy:5 }} #=> "70", {{ "12.31" | toAccuracy:0.2 }} #=> "12.4"
+-   **step** - {{ "71" | step:5 }} #=> "70", {{ "12.31" | step:0.2 }} #=> "12.4"
 
 
 

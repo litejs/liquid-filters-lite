@@ -2,7 +2,7 @@
 
 
 /**
- * @version    0.1.1
+ * @version    0.1.2
  * @date       2014-09-19
  * @stability  2 - Unstable
  * @author     Lauri Rooden <lauri@rooden.ee>
@@ -11,11 +11,11 @@
 
 
 
-!function(P) {
-	var A = Array[P]
-	, D = Date[P]
-	, N = Number[P]
-	, S = String[P]
+!function(prototype) {
+	var A = Array[prototype]
+	, D = Date[prototype]
+	, N = Number[prototype]
+	, S = String[prototype]
 	, formatRe = /{(?!\\)((?:(["'/])(?:\\?.)*?\2|[^}])*)}/g
 	, filterRe = /\|\s*(\w+)(?:\s*\:((?:(["'\/])(?:\\?.)*?\3[igm]*|\-?\d*\.?\d+|[,\s])*))?/g
 	, digitRe = /^\s*\d+/
@@ -60,20 +60,13 @@
 	S.remove = function(str) {
 		return this.split(str).join("")
 	}
-	S.remove_first = function(str) {
-		var arr = this.split(str)
-		return arr.shift() + arr.join(str)
-	}
 
-	S.camelback = function() {
+	S.camelCase = function() {
 		return this.replace(/[ _-]+([a-z])/g, function(_, a){return a.toUpperCase()})
-	}
-	S.camelcase = function() {
-		return this.camelback().capitalize()
 	}
 	//*
 	S.repeat = S.times = function(times) {
-		return times < 1 ? "" : Array(++times).join(this)
+		return times < 1 ? "" : Array(times + 1).join(this)
 	}
 	/*/
 	// High porformance repeat when we should need it
@@ -101,8 +94,7 @@
 		return this[this.length - 1]
 	}
 	A.pluck = function(name) {
-		var t = this, i = t.length, out = []
-		while (i--) out[i] = t[i][name]
+		for (var arr = this, i = arr.length, out = []; i--; ) out[i] = arr[i][name]
 		return out
 	}
 
@@ -128,13 +120,13 @@
 		return arguments[ +Fn("n->n != 1")( parseFloat(this) ) ].replace("#", this)
 	}
 	S.ordinal = N.ordinal = function() {
-		return this+'{0|substr:-1|pick:"1=st","2=nd","3=rd","th"}'.format(""+this)
+		return this + '{0|substr:-1|pick:"1=st","2=nd","3=rd","th"}'.format("" + this)
 	}
 
 	function words(input, steps, units, strings, overflow) {
 		var n = +input
 		, i = 0
-		, s = strings || {"default":"{0} {1}{2}"}
+		, s = strings || {"default": "{0} {1}{2}"}
 
 		while(n>steps[i])n/=steps[i++]
 		if (i == steps.length && overflow) return overflow(this)
@@ -158,14 +150,15 @@
 
 	//** Date.startOfWeek
 	D.startOfWeek = function() {
-		var t = this
-		return new Date(t.getFullYear(), t.getMonth(), t.getDate() - (t.getDay() || 7) +1)
+		var date = this
+		return new Date(date.getFullYear(), date.getMonth(), date.getDate() - (date.getDay() || 7) +1)
 	}
 	//*/
 	//** Date.timeAgo convert dates to human-readable
 	D.timeAgo = function(format, custom) {
-		var t = this, d = (new Date() - t + 1) / 1000
-		return d.humanTime({"default":"{0} {1}{2} ago", "day":"Yesterday"}, function(){return t.format(format)})
+		var date = this
+		, d = (new Date() - date + 1) / 1000
+		return d.humanTime({"default": "{0} {1}{2} ago", "day":"Yesterday"}, function(){return date.format(format)})
 	}
 	//*/
 }("prototype")
