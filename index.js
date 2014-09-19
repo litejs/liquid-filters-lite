@@ -1,13 +1,13 @@
 
 
 
-/*
-* @version    0.1.0
-* @date       2014-08-24
-* @stability  2 - Unstable
-* @author     Lauri Rooden <lauri@rooden.ee>
-* @license    MIT License
-*/
+/**
+ * @version    0.1.1
+ * @date       2014-09-19
+ * @stability  2 - Unstable
+ * @author     Lauri Rooden <lauri@rooden.ee>
+ * @license    MIT License
+ */
 
 
 
@@ -16,8 +16,8 @@
 	, D = Date[P]
 	, N = Number[P]
 	, S = String[P]
-	, formatRe = /\{(?!\\)(.+?)\}/g
-	, filterRe = /\|\s*(\w+)(?:\s*\:((?:(["'\/])(?:\\.|.)*?\3|\-?\d*\.?\d+|[,\s])*))?/g
+	, formatRe = /{(?!\\)((?:(["'/])(?:\\?.)*?\2|[^}])*)}/g
+	, filterRe = /\|\s*(\w+)(?:\s*\:((?:(["'\/])(?:\\?.)*?\3[igm]*|\-?\d*\.?\d+|[,\s])*))?/g
 	, digitRe = /^\s*\d+/
 	, unescapeRe = /{\\/g
 

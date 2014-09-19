@@ -22,6 +22,20 @@ describe ("String filters").
 
 		equal("A {name}".format(user1),   "A John Doe").
 		equal("A {name|upper}".format(user1), "A JOHN DOE").
+		equal("A {name|upper} is a {name|lower}".format(user1), "A JOHN DOE is a john doe").
+		equal("A {name|replace:'}',''} is a {name|lower}".format(user1),    "A John Doe is a john doe").
+		equal("A {name|replace:'o','}'} is a {name|lower}".format(user1),   "A J}hn Doe is a john doe").
+		equal("A {name|replace:'o\\'',''} is a {name|lower}".format(user1), "A John Doe is a john doe").
+		equal("A {name|replace:'o\"',''} is a {name|lower}".format(user1),  "A John Doe is a john doe").
+		equal("A {name|replace:/o/g,'O'} is a {name|lower}".format(user1),  "A JOhn DOe is a john doe").
+
+		equal("A {name.upper()}".format(user1), "A JOHN DOE").
+		equal("A {name.upper()} is a {name|lower}".format(user1), "A JOHN DOE is a john doe").
+		equal("A {name.replace('}','')} is a {name|lower}".format(user1),   "A John Doe is a john doe").
+		equal("A {name.replace('o','}')} is a {name|lower}".format(user1),  "A J}hn Doe is a john doe").
+		equal("A {name.replace('o\\'','')} is a {name|lower}".format(user1),"A John Doe is a john doe").
+		equal("A {name.replace('o\"','')} is a {name|lower}".format(user1), "A John Doe is a john doe").
+		equal("A {name.replace(/o/g,'O')} is a {name|lower}".format(user1), "A JOhn DOe is a john doe").
 
 		equal(text1.format(user1), "He found 1 result in 2 categories.").
 		equal(text1.format(user2), "She found 2 results in 1 category.").
