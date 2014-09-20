@@ -2,7 +2,7 @@
 
 
 /**
- * @version    0.1.3
+ * @version    0.1.4
  * @date       2014-09-20
  * @stability  2 - Unstable
  * @author     Lauri Rooden <lauri@rooden.ee>
@@ -21,11 +21,10 @@
 	, digitRe = /^\s*\d+/
 	, unescapeRe = /{\\/g
 
-	S.format = function(data, recursions) {
+	S.format = function(data) {
 		var args = typeof data == "object" ? data : arguments
 		return this.replace(formatRe, function(_, arg) {
-			_ = Fn(arg.replace(digitRe, "_[$&]").replace(filterRe, ".$1($2)"), "_")(args)
-			return args === data && recursions ? _.format(data, recursions - 1) : _
+			return Fn(arg.replace(digitRe, "_[$&]").replace(filterRe, ".$1($2)"), "_")(args)
 		}).replace(unescapeRe, "{")
 	}
 
@@ -55,7 +54,7 @@
 		return this.slice(0, num)
 	}
 	S.truncatewords = function(num) {
-		return this.split(" ").splice(0, num).join(" ")
+		return this.split(" ").slice(0, num).join(" ")
 	}
 	S.remove = function(str) {
 		return this.split(str).join("")
