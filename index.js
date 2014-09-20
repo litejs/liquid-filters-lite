@@ -2,8 +2,8 @@
 
 
 /**
- * @version    0.1.2
- * @date       2014-09-19
+ * @version    0.1.3
+ * @date       2014-09-20
  * @stability  2 - Unstable
  * @author     Lauri Rooden <lauri@rooden.ee>
  * @license    MIT License
@@ -17,7 +17,7 @@
 	, N = Number[prototype]
 	, S = String[prototype]
 	, formatRe = /{(?!\\)((?:(["'/])(?:\\?.)*?\2|[^}])*)}/g
-	, filterRe = /\|\s*(\w+)(?:\s*\:((?:(["'\/])(?:\\?.)*?\3[igm]*|\-?\d*\.?\d+|[,\s])*))?/g
+	, filterRe = /\|\s*(\w+)(?:\s*\:((?:(["'\/])(?:\\?.)*?\3|[^|])*))?/g
 	, digitRe = /^\s*\d+/
 	, unescapeRe = /{\\/g
 

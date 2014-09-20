@@ -10,15 +10,23 @@ var curr = new Date()
 , user3 = { num: 2, total: 2 }
 , text1 = "{sex|pick:'male=He','female=She','They'} found {num|plural:'1 result','# results'} in {total|plural:'1 category','# categories'}."
 , text2 = "{sex | pick:'male=He', 'female=She', 'They'} found { num | plural : '1 result', '# results' } in { total | plural : '1 category' , '# categories' }."
+, text3 = "A {sex|pick:'male=man {name|upcase}','female=woman {name|downcase}','some {name}'|format:_} found."
 
 require("testman").
 describe ("String filters").
 	it ("should format texts").
 		equal("{\\name}".format(user1),   "{name}").
+		equal("escaped {\\name} middle".format(user1), "escaped {name} middle").
+
 		equal("{name}".format(user1),     "John Doe").
 		equal("{ name}".format(user1),    "John Doe").
 		equal("{name  }".format(user1),   "John Doe").
 		equal("{ name }".format(user1),   "John Doe").
+
+		equal("{name}".format(user3),     "").
+		equal("{ name}".format(user3),    "").
+		equal("{name  }".format(user3),   "").
+		equal("{ name }".format(user3),   "").
 
 		equal("A {name}".format(user1),   "A John Doe").
 		equal("A {name|upper}".format(user1), "A JOHN DOE").
@@ -44,6 +52,10 @@ describe ("String filters").
 		equal(text2.format(user1), "He found 1 result in 2 categories.").
 		equal(text2.format(user2), "She found 2 results in 1 category.").
 		equal(text2.format(user3), "They found 2 results in 2 categories.").
+
+		equal(text3.format(user1), "A man JOHN DOE found.").
+		equal(text3.format(user2), "A woman eve joung found.").
+		equal(text3.format(user3), "A some  found.").
 
 	it ("should capitalize text").
 		equal( "ab cd".capitalize() , "Ab cd").
