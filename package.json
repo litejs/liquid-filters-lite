@@ -2,8 +2,8 @@
   "name": "liquid-filters-lite",
   "version": "0.1.4",
   "stability": 2,
-  "license": "MIT",
   "author": "Lauri Rooden <lauri@rooden.ee>",
+  "license": "MIT",
   "description": "Standard Filters for Liquid template engine",
   "keywords": [
     "template",
@@ -14,6 +14,10 @@
   ],
   "main": "index.js",
   "readmeFilename": "README.md",
+  "files": [
+    "dist",
+    "index.js"
+  ],
   "scripts": {
     "build": "node node_modules/buildman/index.js --all",
     "travis-test": "istanbul cover ./tests/run.js && (coveralls < coverage/lcov.info || exit 0)",
