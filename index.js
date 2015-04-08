@@ -28,8 +28,8 @@
 		}).replace(unescapeRe, "{")
 	}
 
-	N.format = function(data, recursions) {
-		return ("" + this).format(data, recursions)
+	N.format = function(data) {
+		return ("" + this).format(data)
 	}
 
 	S.safe = function() {
