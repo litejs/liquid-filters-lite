@@ -97,9 +97,11 @@
 		return out
 	}
 
-	S.step = N.step = S.toAccuracy = N.toAccuracy = function(a) {
-		var x = (""+a).split("."), n = ~~((this/a)+.5) * a
-		return ""+(1 in x ? n.toFixed(x[1].length) : n)
+	S.step = N.step = S.toAccuracy = N.toAccuracy = function(step, roundUp) {
+		var part = ("" + step).split(".")
+		, b = this / step
+		, n = ~~(b + (roundUp === true && b !== ~~b ? 1 : roundUp !== false ? .5 : 0)) * step
+		return 1 in part ? n.toFixed(part[1].length) : "" + n
 	}
 
 	S.pick = N.pick = function() {

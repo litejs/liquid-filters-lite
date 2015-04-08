@@ -72,8 +72,30 @@ describe ("String filters").
 		equal( "13".humanTime(), "13 seconds").
 		equal( "78".humanTime(), "1 minute").
 
-		equal( "71".toAccuracy(5), "70").
-		equal( "12.31".toAccuracy(0.2), "12.4").
+	it ("should have 'step' method").
+		equal( "70".step(5), "70").
+		equal( "70.004".step(5), "70").
+		equal( "71".step(5), "70").
+		equal( "72".step(5), "70").
+		equal( "73".step(5), "75").
+		equal( "75".step(5), "75").
+		equal( "12.31".step(0.2), "12.4").
+
+		equal( "70".step(5, false), "70").
+		equal( "70.004".step(5, false), "70").
+		equal( "71".step(5, false), "70").
+		equal( "72".step(5, false), "70").
+		equal( "73".step(5, false), "70").
+		equal( "75".step(5, false), "75").
+		equal( "12.31".step(0.2, false), "12.2").
+
+		equal( "70".step(5, true), "70").
+		equal( "70.004".step(5, true), "75").
+		equal( "71".step(5, true), "75").
+		equal( "72".step(5, true), "75").
+		equal( "73".step(5, true), "75").
+		equal( "75".step(5, true), "75").
+		equal( "12.31".step(0.2, true), "12.4").
 
 	it ("should repeat strings").
 		equal( "a".repeat(1),   "a").
