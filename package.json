@@ -1,6 +1,6 @@
 {
   "name": "liquid-filters-lite",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "stability": 2,
   "author": "Lauri Rooden <lauri@rooden.ee>",
   "license": "MIT",
@@ -34,6 +34,9 @@
     "testman": "*"
   },
   "buildman": {
-    "dist/index-min.js": "index.js"
+    "dist/index-min.js": {
+      "banner": "/*! litejs.com/MIT-LICENSE.txt */",
+      "input": "index.js"
+    }
   }
 }
