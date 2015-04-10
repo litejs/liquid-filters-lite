@@ -81,6 +81,14 @@ describe ("String filters").
 		equal( "75".step(5), "75").
 		equal( "12.31".step(0.2), "12.4").
 
+		equal( "70".step(5, null), "70").
+		equal( "70.004".step(5, null), "70").
+		equal( "71".step(5, null), "70").
+		equal( "72".step(5, null), "70").
+		equal( "73".step(5, null), "75").
+		equal( "75".step(5, null), "75").
+		equal( "12.31".step(0.2, null), "12.4").
+
 		equal( "70".step(5, false), "70").
 		equal( "70.004".step(5, false), "70").
 		equal( "71".step(5, false), "70").

@@ -100,7 +100,7 @@
 	S.step = N.step = S.toAccuracy = N.toAccuracy = function(step, roundUp) {
 		var part = ("" + step).split(".")
 		, b = this / step
-		, n = ~~(b + (roundUp === true && b !== ~~b ? 1 : roundUp !== false ? .5 : 0)) * step
+		, n = ~~(b + (roundUp && b != ~~b ? 1 : roundUp == null ? .5 : 0)) * step
 		return 1 in part ? n.toFixed(part[1].length) : "" + n
 	}
 
